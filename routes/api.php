@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\KendaraanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,12 @@ use App\Http\Controllers\PostController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+
+Route::get('/kendaraan/stok', [KendaraanController::class, 'getStok'])->name('kendaraan.stok');
+Route::get('/kendaraan/stok-dan-kendaraan', [KendaraanController::class, 'getStokDanKendaraanByPage'])->name('kendaraan.stok-dan-kendaraan');
+
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
