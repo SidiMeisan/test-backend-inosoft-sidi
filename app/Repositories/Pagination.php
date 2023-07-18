@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Builder;
+use Jenssegers\Mongodb\Query\Builder as MongoBuilder;
 
 class Pagination
 {
@@ -15,7 +16,7 @@ class Pagination
         $this->size = $size;
     }
 
-    public function applyPagination(Builder $query): Builder
+    public function applyPagination(Builder|Mongobuilder $query): Builder|Mongobuilder
     {
         return $query->skip(($this->page - 1) * $this->size)->take($this->size);
     }
@@ -28,3 +29,4 @@ class Pagination
         ];
     }
 }
+
