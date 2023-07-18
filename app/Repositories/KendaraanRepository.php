@@ -4,8 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Kendaraan;
 use App\Repositories\Pagination;
-
-use Illuminate\Database\Eloquent\Builder;
+use Jenssegers\Mongodb\Query\Builder as MongoBuilder;
 
 class KendaraanRepository
 {
@@ -28,5 +27,5 @@ class KendaraanRepository
         ], $pagination->toArray());
     }
 
-    // Implementasikan metode-metode lainnya
+    // Implement other methods
 }
