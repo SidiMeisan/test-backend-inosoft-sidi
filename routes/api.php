@@ -19,10 +19,12 @@ use App\Http\Controllers\KendaraanController;
 */
 
 
-Route::get('/kendaraan/stok', [KendaraanController::class, 'getStok'])->name('kendaraan.stok');
-Route::get('/kendaraan/stok-dan-kendaraan', [KendaraanController::class, 'getStokDanKendaraanByPage'])->name('kendaraan.stok-dan-kendaraan');
+// Route::get('/kendaraan/stok', [KendaraanController::class, 'getStok'])->name('kendaraan.stok');
 
-
+Route::middleware('api')->group(function () {
+    // Rute yang memerlukan pengisian header API-key
+    Route::get('/kendaraan/stok-dan-kendaraan', [KendaraanController::class, 'getStokDanKendaraanByPage'])->name('kendaraan.stok-dan-kendaraan');
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
