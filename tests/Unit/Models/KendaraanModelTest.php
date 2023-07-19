@@ -6,9 +6,12 @@ use Illuminate\Validation\ValidationException;
 
 use App\Models\Kendaraan;
 use Tests\TestCase;
+use Tests\Unit\Models\ValidationTestBase;
 
-class KendaraanTest extends TestCase
+class KendaraanTest extends ValidationTestBase
 {
+    protected $model = Kendaraan::class;
+    
     public function validationDataProvider(): array
     {
         return [
@@ -107,23 +110,5 @@ class KendaraanTest extends TestCase
                 'shouldPass' => false,
             ],
         ];
-    }
-
-    /**
-     * @dataProvider validationDataProvider
-     */
-    public function testValidation(array $data, bool $shouldPass)
-    {
-        if ($shouldPass) {
-            $kendaraan = new Kendaraan();
-            $validatedData = $kendaraan->validate($data);
-
-            $this->assertEquals($data, $validatedData);
-        } else {
-            $this->expectException(ValidationException::class);
-
-            $kendaraan = new Kendaraan($data);
-            $kendaraan->validate($kendaraan->toArray());
-        }
     }
 }

@@ -3,6 +3,9 @@
 namespace Tests\Unit\Repositories;
 
 use App\Models\Kendaraan;
+use App\Models\Mobil;
+use App\Models\Motor;
+
 use App\Repositories\KendaraanRepository;
 use App\Repositories\Pagination;
 use Tests\TestCase;
@@ -15,6 +18,8 @@ class KendaraanRepositoryTest extends TestCase
 
         // Manually clear the MongoDB collection
         Kendaraan::truncate();
+        Mobil::truncate();
+        Motor::truncate();
     }
 
     public function createDummyData(int $count): void
@@ -32,6 +37,26 @@ class KendaraanRepositoryTest extends TestCase
             $kendaraan->warna = $warna;
             $kendaraan->harga = $harga;
             $kendaraan->save();
+
+            $randomNumber = rand(1, 2);
+
+            if ($randomNumber === 1) {
+                // Random data for Mobil
+                $mobil = new Mobil;
+                $mobil->kendaraan_id = $kendaraan->_id;
+                $mobil->mesin = 'Mesin Mobil';
+                $mobil->kapasitas_penumpang = rand(2, 5);
+                $mobil->tipe = ['Sedan', 'SUV', 'Hatchback'][array_rand(['Sedan', 'SUV', 'Hatchback'])];
+                $mobil->save();
+            } else {
+                // Random data for Motor
+                $motor = new Motor;
+                $motor->kendaraan_id = $kendaraan->_id;
+                $motor->mesin = 'Mesin Motor';
+                $motor->tipe_suspensi = ['Upside Down', 'Monoshock', 'Teleskopik'][array_rand(['Upside Down', 'Monoshock', 'Teleskopik'])];
+                $motor->tipe_transmisi = ['Manual', 'Matic'][array_rand(['Manual', 'Matic'])];
+                $motor->save();
+            }
         }
     }
 
