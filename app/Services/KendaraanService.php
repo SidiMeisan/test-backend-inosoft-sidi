@@ -18,8 +18,14 @@ class KendaraanService
         return $this->kendaraanRepository->getStokDanKendaraanByPage($page, $size);
     }
 
-    public function jualKendaraan(int $id): bool
+    public function updateTerjual(String $id): array
     {
         return $this->kendaraanRepository->updateTerjual($id);
+    }
+
+    
+    public function getTerjualKendaraanByPage(int $page, int $size, String $jenis): array
+    {
+        return $this->kendaraanRepository->getTerjualKendaraanByPage($page, $size, $jenis);
     }
 }

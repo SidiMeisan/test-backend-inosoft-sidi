@@ -23,7 +23,9 @@ use App\Http\Controllers\KendaraanController;
 
 Route::middleware('api')->group(function () {
     // Rute yang memerlukan pengisian header API-key
-    Route::get('/kendaraan/stok-dan-kendaraan', [KendaraanController::class, 'getStokDanKendaraanByPage'])->name('kendaraan.stok-dan-kendaraan');
+    Route::get('/kendaraan/stok-dan-kendaraan', [KendaraanController::class, 'getStokDanKendaraanByPage'])->name('kendaraan.stok-dan-kendaraan'); 
+    Route::put('/kendaraan/{id}/terjual', [KendaraanController::class, 'updateTerjual'])->name('kendaraan.update-terjual');
+    Route::get('/kendaraan/terjual/{jenis}', [KendaraanController::class, 'getTerjualKendaraanByPage'])->name('kendaraan.terjual-jenis');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

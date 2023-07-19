@@ -26,4 +26,22 @@ class KendaraanController extends Controller
 
         return response()->json($result);
     }
+
+    // Tambahkan method untuk megubah kendaraan menjadi terjual
+    public function updateTerjual($id)
+    {
+        $result = $this->kendaraanService->updateTerjual($id);
+
+        return response()->json($result);
+    }
+
+    public function getTerjualKendaraanByPage(Request $request, $jenis)
+    {
+        $page = $request->query('page', 1);
+        $size = $request->query('size', 10);
+
+        $result = $this->kendaraanService->getTerjualKendaraanByPage($page, $size, $jenis);
+
+        return response()->json($result);
+    }
 }
