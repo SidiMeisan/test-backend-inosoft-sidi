@@ -9,7 +9,7 @@ class Kendaraan extends Model
 {
     protected $connection = 'mongodb2';
     protected $collection = 'Kendaraan';
-    protected $fillable = ['tahun_keluaran', 'warna', 'harga'];
+    protected $fillable = ['tahun_keluaran', 'warna', 'harga', 'terjual'];
 
     public static function rules()
     {
