@@ -98,6 +98,12 @@ return [
             'database' => 'testDB',
         ],
 
+        'mongodb2' => [
+            'driver' => 'mongodb',
+            'dsn' => env('DB_URI', 'mongodb+srv://bukankami:OkAunqKIGWpphsd6@cluster0.usdogx9.mongodb.net/?retryWrites=true&w=majority'),
+            'database' => 'penjualanDB',
+        ],
+
     ],
 
     /*
